@@ -9,7 +9,14 @@
 // Hint: Utilize the string prototype method charCodeAt and generic method fromCharCode
 
 function letterChecker(str) {
-
+  for (let i = 0; i < str.length - 1; i++) {
+    const charCode = str.charCodeAt(i);
+    if ((charCode + 1) != str.charCodeAt(i + 1)) {
+      let retString = String.fromCharCode(charCode + 1);
+      return retString;
+    }
+  }
+  return 'no missing letters'
 }
 
 
@@ -23,6 +30,18 @@ function letterChecker(str) {
 // output: true (because 4+3)
 
 function sumEqualsTarget(arr, target) {
+
+  for (let i = 0; i < arr.length; i++) {
+    const firstNumber = arr[i];
+    for (let j = i + 1; j < arr.length; j++) {
+      const secNumber = arr[j];
+      if (firstNumber + secNumber == target) {
+        // let retString = true '(because ' + firstNumber + '+' + secNumber + ')';
+        return true
+      }
+    }
+  }
+  return false
 }
 
 
@@ -35,5 +54,4 @@ function sumEqualsTarget(arr, target) {
 // input:  [2, 9, 4, 3, 6, 6, 1, 5, 8]
 // output: [2, 1, 4, 3, 6, 6, 5, 9, 8]
 
-function oddAscender(arr) {
-}
+function oddAscender(arr) {}

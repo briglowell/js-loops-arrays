@@ -4,6 +4,9 @@
 // output: ['is', 'a', 'split', 'sentence.', 'This']
 
 function rearranger(arr) {
+    arr.push(arr.shift());
+    return arr;
+
 }
 
 
@@ -16,6 +19,22 @@ function rearranger(arr) {
 // output: 42
 
 function largestNum(arr) {
+    let max = 0;
+    let dupCount = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (max < arr[i]) max = arr[i];
+    }
+    for (let i = 0; i < arr.length; i++) {
+        if (max == arr[i]) dupCount++
+    }
+    if (dupCount > 1) {
+        let dup = {
+            [max]: dupCount,
+        }
+        return dup;
+    } else {
+        return max;
+    }
 }
 
 
@@ -28,6 +47,11 @@ function largestNum(arr) {
 // output: [16, 8, 4, 28]
 
 function elemsTimesLength(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = arr[i] * arr.length;
+    }
+    return arr;
+
 }
 
 
@@ -41,7 +65,13 @@ function elemsTimesLength(arr) {
 // Primitive data types - https://developer.mozilla.org/en-US/docs/Glossary/Primitive
 
 function arrayFlattener(arr) {
-
+    let arrClone = arr.flat(Infinity);
+    for (let i = 0; i < arrClone.length; i++) {
+        if (typeof arrClone[i] == 'object') {
+            arrClone.splice(i, 1);
+        }
+    }
+    return arrClone;
 }
 
 
@@ -76,7 +106,13 @@ let flights = [{
 
 function flightCost(destination, firstClass) {
     //***hint: use the find method***
-
+    let price;
+    if (firstClass) {
+        price = flights.find(element => element.to == destination.toUpperCase()).prices.firstClass;
+    } else {
+        price = flights.find(element => element.to == destination.toUpperCase()).prices.standard;
+    }
+    return price;
 }
 
 
@@ -92,11 +128,44 @@ function flightCost(destination, firstClass) {
 // output: { error: "No user with that id." } 
 
 
-let staff = [{ id: 1, name: 'Jon' }, { id: 2, name: 'Yuli' }, { id: 21, name: 'Peter' },
-{ id: 17, name: 'St. MaryLou de la Playa Carmen' }, { id: 51, name: 'Doug' },
-{ id: 881, name: 'Paul' }, { id: 0, name: 'Jon' }, { id: 999, name: 'Timma' }]
+let staff = [{
+        id: 1,
+        name: 'Jon'
+    }, {
+        id: 2,
+        name: 'Yuli'
+    }, {
+        id: 21,
+        name: 'Peter'
+    },
+    {
+        id: 17,
+        name: 'St. MaryLou de la Playa Carmen'
+    }, {
+        id: 51,
+        name: 'Doug'
+    },
+    {
+        id: 881,
+        name: 'Paul'
+    }, {
+        id: 0,
+        name: 'Jon'
+    }, {
+        id: 999,
+        name: 'Timma'
+    }
+]
 
 function findById(id) {
+    let staffMember = staff.find(element => element.id == id);;
+    if (staffMember == undefined) {
+        staffMember = {
+            error: 'No user with that id.'
+        }
+    }
+    return staffMember;
+
 
 }
 
@@ -124,4 +193,14 @@ let theBand = {
 }
 
 function bandMemberDetails(name) {
+    str = '';
+    let members = theBand.members;
+    for (let i = 0; i < members.length; i++) {
+        const member = members[i].name;
+        const instrument = members[i].instrument;
+        if (member.toLowerCase().includes(name.toLowerCase())) {
+            str = member + " is in the band and plays the " + instrument;
+            return str;
+        }
+    }
 }
