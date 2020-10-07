@@ -36,7 +36,6 @@ function sumEqualsTarget(arr, target) {
     for (let j = i + 1; j < arr.length; j++) {
       const secNumber = arr[j];
       if (firstNumber + secNumber == target) {
-        // let retString = true '(because ' + firstNumber + '+' + secNumber + ')';
         return true
       }
     }
@@ -54,4 +53,41 @@ function sumEqualsTarget(arr, target) {
 // input:  [2, 9, 4, 3, 6, 6, 1, 5, 8]
 // output: [2, 1, 4, 3, 6, 6, 5, 9, 8]
 
-function oddAscender(arr) {}
+function oddAscender(arr) {
+  console.log(arr)
+  if (arr.length < 2) return arr;
+  let lastOddIndex = arr.length;
+
+  for (let i = 0; i < lastOddIndex; i++) {
+    let lastOdd = 0;
+    let maxOdd = 0;
+    let maxOddIndex = 0;
+    let tempIndex;
+    for (let j = 0; j < lastOddIndex; j++) {
+      let curNum = arr[j];
+      //checks if odd then sets updates max number and last odd
+      if (curNum % 2 == 1) {
+        if (maxOdd < curNum) {
+          maxOdd = curNum;
+          maxOddIndex = j;
+        }
+        lastOdd = curNum;
+        tempIndex = j;
+      }
+    }
+    console.log("cp-1")
+    console.log(lastOdd)
+    console.log(tempIndex)
+    //if an odd number is found
+    if (tempIndex != undefined) {
+      lastOddIndex = tempIndex;
+      //checks if max is last odd index, if not, swap to last odd index
+      if (maxOddIndex != lastOddIndex) {
+        [arr[lastOddIndex], arr[maxOddIndex]] = [arr[maxOddIndex], arr[lastOddIndex]];
+      }
+    }
+  }
+  console.log(arr);
+  return arr;
+
+}
