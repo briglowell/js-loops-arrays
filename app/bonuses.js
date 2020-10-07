@@ -54,7 +54,6 @@ function sumEqualsTarget(arr, target) {
 // output: [2, 1, 4, 3, 6, 6, 5, 9, 8]
 
 function oddAscender(arr) {
-  console.log(arr)
   if (arr.length < 2) return arr;
   let lastOddIndex = arr.length;
 
@@ -75,9 +74,6 @@ function oddAscender(arr) {
         tempIndex = j;
       }
     }
-    console.log("cp-1")
-    console.log(lastOdd)
-    console.log(tempIndex)
     //if an odd number is found
     if (tempIndex != undefined) {
       lastOddIndex = tempIndex;
@@ -87,7 +83,5 @@ function oddAscender(arr) {
       }
     }
   }
-  console.log(arr);
   return arr;
-
 }
